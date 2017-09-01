@@ -1,0 +1,4 @@
+#!/usr/bin/env python
+import skyagent
+
+skyagent.start_session()
