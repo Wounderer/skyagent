@@ -19,8 +19,11 @@ class Agent:
         self.skyid = os.environ.get('SKY_ID')
     
     def get_config():
-            config = str(subprocess.check_output(['uci', 'export']))
+            config = str(subprocess.check_output(['uci', 'show']))
             return config
+    def get_chilli():
+            clients = str(subprocess.check_output(['sky_env', 'chilli_clients']))
+            return clients 
 
 class ClientSession(ApplicationSession):
     log = txaio.make_logger()
@@ -78,6 +81,7 @@ class ClientSession(ApplicationSession):
         self.log.info("subscribed to topic sky.devices")
 
         self.publish(u"sky.devices", {"skyId":str(skyid), "action":"up", "config": cmd_get_config() })
+        self.publish(u"sky.devices", {"skyId":str(skyid), "action":"chilli_state", "clients": agent.get_chilli() })
 
 
 
