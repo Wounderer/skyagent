@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+[ -z "$1" ] && {
+
+}
+
+UCI_CONFIG=$(uci export)
+
+chilli_clients() {
+local Clients=$(/usr/sbin/chilli_query list | sed "s/ /\", \"/g" | sed "s/^/[\"/" | sed "s/$/\"]/" | sed ':a;N;$!ba;s/\n/,\n\t/g')
+
+    [ "$?" = "0" ] && {
+        echo "["
+        echo "	${Clients}"
+        echo "]"
+    } || echo '[[""]]'
+}
+
+[ "${1}" == "chilli_clients" ] && {
+	chilli_clients
+}
