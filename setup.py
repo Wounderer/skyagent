@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='skyagent',
-      version='0.3',
+      version='0.4',
       description='Skywifi agent',
       url='https://github.com/Wounderer/skyagent.git',
       author='SkyWifi',

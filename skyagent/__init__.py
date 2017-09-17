@@ -80,8 +80,8 @@ class ClientSession(ApplicationSession):
         yield self.subscribe(dev_public, u"sky.devices", options=SubscribeOptions(details_arg='details'))
         self.log.info("subscribed to topic sky.devices")
 
-        self.publish(u"sky.devices", {"skyId":str(skyid), "action":"up", "config": cmd_get_config() })
-        self.publish(u"sky.devices", {"skyId":str(skyid), "action":"chilli_state", "clients": agent.get_chilli() })
+        self.publish(u"sky.devices", {"skyId":str(skyid), "action":"up", "config": Agent.get_config() })
+        self.publish(u"sky.devices", {"skyId":str(skyid), "action":"chilli_state", "clients": Agent.get_chilli() })
 
 
 
